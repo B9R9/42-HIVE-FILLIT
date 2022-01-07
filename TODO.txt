@@ -1,0 +1,25 @@
+TO DO LIST
+
+-> Create a file where all the tetrimimnos are store
+
+-> When you wrote cp without any argument:
+usage: cp [-R [-H | -L | -P]] [-fi | -n] [-apvXc] source_file target_file
+       cp [-R [-H | -L | -P]] [-fi | -n] [-apvXc] source_file ... target_directory
+our function should return in case argc != 2
+usage: ./fillit source_file // ???
+
+
+Should we use bitwise ?
+	turn every tetriminos in bitwise and compare it
+
+Should we use 2 dimensional arr ?
+
+Should we use Structure to store piece
+
+typedef struct		<varaible name>
+{
+	int x;
+	int y;
+	struct *next
+}
+
