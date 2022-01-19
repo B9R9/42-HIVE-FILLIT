@@ -6,7 +6,7 @@
 #    By: briffard <briffard@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/18 15:26:05 by briffard          #+#    #+#              #
-#    Updated: 2022/01/18 17:37:01 by briffard         ###   ########.fr        #
+#    Updated: 2022/01/19 16:06:15 by briffard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,26 +30,26 @@ CCFLAGS		=	-Werror -Wextra -Wall
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(CC) $(CCFLAGS) -o $@ $^ -L $(LIBFT)
+	@$(CC) $(CCFLAGS) -o $@ $^ -L $(LIBFT)
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c
-	mkdir -p $(OBJ_DIR)	
-	$(CC) $(CCFLAGS) -I$(INCL_FILLIT) -I $(INCL_LIBFT) -o $@ -c $<
+	@mkdir -p $(OBJ_DIR)	
+	@$(CC) $(CCFLAGS) -I$(INCL_FILLIT) -I $(INCL_LIBFT) -o $@ -c $<
 
 clean:
-	$(RM) -rf $(OBJ_DIR)
+	@$(RM) -rf $(OBJ_DIR)
 
 fclean: clean
-	$(RM) -f $(NAME)
-	$(RM) -f tetriminos_generator
+	@$(RM) -f $(NAME)
 
 re: fclean all clean
 
 lft:
-	make -C libft/ fclean && make -C libft/  && make -C libft/ clean 
+	@make -C libft/ fclean && make -C libft/  && make -C libft/ clean 
 
-tetriminos:
-	@bash tetriminos_generator.sh
+tetrigen:
+	@make -C eval_test/tetrigen/ fclean && make -C eval_test/tetrigen
+	@./eval_test/tetrigen/runtetrigen.sh
 
 .PHONY: all clean fclean re lft tetriminos
 
