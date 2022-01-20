@@ -6,7 +6,7 @@
 /*   By: briffard <briffard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 14:33:45 by briffard          #+#    #+#             */
-/*   Updated: 2022/01/19 14:06:28 by briffard         ###   ########.fr       */
+/*   Updated: 2022/01/20 15:43:16 by briffard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,14 @@
 typedef struct	s_tetriminos
 {
 	char 					*tetriminos;
-	char					order;
-	int						position_horizontal;
-	int	 					position_verticale;
+//	char					order;
+//	int						position_horizontal;
+//	int	 					position_verticale;
 	struct s_tetriminos		*next;
-}				t_tetriminos;
+}				t_tetri_list,*List;
 
 /*PROTOTYPES*/
-
-
+List	newlist(void);
+List	push_back_list(List li, char *shape);
+void	print_list(List li);
 #endif
