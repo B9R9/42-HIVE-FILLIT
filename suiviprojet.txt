@@ -1,0 +1,7 @@
+24/01
+Ajouter dune function pour copier le tetriminos dans un double arr dans une
+liste chainee
+
+-> faire une function pour retirer tous les empty non mecessaires
+-> Normiser la function // reoragnisation de la function
+-> 
