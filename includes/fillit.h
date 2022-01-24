@@ -6,7 +6,7 @@
 /*   By: briffard <briffard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 14:33:45 by briffard          #+#    #+#             */
-/*   Updated: 2022/01/21 13:30:52 by briffard         ###   ########.fr       */
+/*   Updated: 2022/01/24 13:19:03 by briffard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@
 /*TYPEDEF*/
 typedef struct	s_tetriminos
 {
-	char 					*tetriminos;
+	char 					**tetriminos;
 //	char					order;
 //	int						position_horizontal;
 //	int	 					position_verticale;
@@ -50,6 +50,8 @@ typedef enum
 List	newlist(void);
 List	push_back_list(List li, char *shape);
 void	print_list(List li);
+List	pop_front_list(List li);
+List	clear_list(List li);
 
 t_bool	is_valid(char *tetriminos);
 int		sidechecker(char *tetriminos, int index);

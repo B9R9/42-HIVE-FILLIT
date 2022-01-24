@@ -22,4 +22,20 @@ typedef struct		<varaible name>
 	int y;
 	struct *next
 }
+retirer tous les tous les lignes et colones pas necessaire:
+ex:
+. . . . \n     devient :# # . \n
+. # # . \n              . # # \n
+. . # # \n
+. . . . \n
+
+# # . . \n     devient :# # \n
+. # . . \n              . # \n
+. # . . \n              . # \n
+. . . . \n
+
+. # . . \n
+# # # . \n
+
+
 
