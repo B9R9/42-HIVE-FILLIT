@@ -1,7 +1,21 @@
-24/01
+24/01:
 Ajouter dune function pour copier le tetriminos dans un double arr dans une
 liste chainee
 
 -> faire une function pour retirer tous les empty non mecessaires
 -> Normiser la function // reoragnisation de la function
--> 
+
+26/01:
+Changement d approche pour integre le bitwise
+-> transformer toutes les pieces en nombre binaire -> done
+-> cp ce nombre dnas la struct -> done
+-> recupere les coordonnes de chauqe # et les stocke dans un int ** -> done
+
+27/01:
+-> aligner les pieces en haut a gauche
+-> clean les fichiers
+-> Mettre a jour git hub My vim config avec le fichier sur ton pc
+
+-> creer une map
+-> mettre un tetriminos sur la map et print
+-> mettre 2 pieces de tetriminos et print

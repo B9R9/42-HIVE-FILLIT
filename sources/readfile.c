@@ -6,20 +6,26 @@
 /*   By: briffard <briffard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 13:57:42 by briffard          #+#    #+#             */
-/*   Updated: 2022/01/24 16:33:54 by briffard         ###   ########.fr       */
+/*   Updated: 2022/01/26 16:39:16 by briffard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"fillit.h"
 
 /*newlist creation*/
-List	newlist(void)
+List_arr	newlist_arr(void)
+{
+	return (NULL);
+}
+
+List_bits	newlist_bit(void)
 {
 	return (NULL);
 }
 
 /*=============================================================================*/
-/*REOMOVE ALL DOTS UNECESSARY*/
+/*
+REMOVE ALL DOTS UNECESSARY
 
 char	**ft_strtrim_dots(char **arr)
 {
@@ -28,9 +34,12 @@ char	**ft_strtrim_dots(char **arr)
 		{
 			ft_bzero(arr[i], ft_strlen(arr[i]));
 			arr[i] = ft_strdup
+		}
+}
+*/
 
 /*=============================================================================*/
-/*COPY SHAPE IN A DOUBLE ARR AND REMOVING UNECESSARY CHAR*/
+/*COPY SHAPE IN A DOUBLE ARR*/
 char	**cpy_to_double_arr(char *str, char **arr)
 {
 	int		line;
@@ -44,26 +53,56 @@ char	**cpy_to_double_arr(char *str, char **arr)
 	{
 		if (str[i] == NEWLINE)
 		{
+			arr[line][column] = '\0';
 			line++;
 			i++;
-			arr[line][column] = '\0';
 			column = 0;
 		}
 		arr[line][column] = str[i];
 		i++;
 		column++;
 	}
-	arr[line][column] = '\0';
+	arr[line][0] = '\0';
+//	printf("line = %3d\ncolumn = %3d\n", line, column);
 	return (arr);
 }
 
 /*=============================================================================*/
+/*SAVE coordonne of every block in ARR of INT (4 lines and 2 columns))*/
+
+int		**save_coordonne(char	**str, int	**tab)
+{
+	int	index;
+	int	line;
+	int count;
+
+	index = 0;
+	line = 0;
+	count = 0;
+	while (str[line][index] != '\0')
+	{
+		while (str[line][index] != '\0')
+		{
+			if (str[line][index] == '#')
+			{
+				tab[count][0] = line;
+				tab[count][1] = index;
+				count++;
+			}
+			index++;
+		}
+		line++;
+		index = 0 ;
+	}
+	return (tab);
+}
+/*=============================================================================*/
 /*Created a new element and put at the end of the list*/
-List	push_back_list(List li, char *shape)
+List_arr	push_back_list(List_arr li, char *shape)
 {
 	int				i;
-	t_tetri_list	*element;
-	t_tetri_list	*temp;
+	t_arr_tetri		*element;
+	t_arr_tetri		*temp;
 	
 
 	i = 0;
@@ -74,12 +113,20 @@ List	push_back_list(List li, char *shape)
 		exit(EXIT_FAILURE);
 	}
 	element->tetriminos = (char **)ft_memalloc((sizeof(char *) * 4) + 1);
+	element->coordonnee = (int **)ft_memalloc((sizeof(int *) * 4) + 1);
 	while (i < 5)
 	{
 		element->tetriminos[i] = (char *)ft_memalloc((sizeof(char) * 4) + 1);
 		i++;
 	}
+	i = 0;
+	while (i < 5)
+	{
+		element->coordonnee[i] = (int *)ft_memalloc((sizeof(int) * 2) + 1);
+		i++;
+	}
 	element->tetriminos = cpy_to_double_arr(shape, element->tetriminos);
+	element->coordonnee = save_coordonne(element->tetriminos, element->coordonnee);
 	element->next = NULL;
 	if (!li)
 		return (element);
@@ -107,11 +154,32 @@ List	push_back_list(List li, char *shape)
 	ft_putchar('\n');
 }
 */
+
+/*=============================================================================*/
+/*PRINT BITS*/
+void	printbit(uint64_t c)
+{
+	uint64_t	bit = 1 << 15;
+	int 		i = 0;
+	while (bit  != 0)
+	{
+		if (c & bit)
+			ft_putchar('1');
+		else
+			ft_putchar('0');
+		bit >>= 1;
+		i++;
+		if (i % 4 == 0)
+			ft_putchar(' ');
+	}
+	ft_putchar('\n');
+}
+
 /*============================================================================*/
 /*REMOVE AN ELEMENT FROM THE BEGINING OF THE LIST*/
-List	pop_front_list(List li)
+List_arr	pop_front_list(List_arr li)
 {
-	t_tetri_list	*element;
+	t_arr_tetri		*element;
 	
 	element = malloc(sizeof(*element));
 	if (!element)
@@ -130,7 +198,7 @@ List	pop_front_list(List li)
 /*===========================================================================*/
 /*CLEAR ALL THE LIST*/
 
-List	clear_list(List li)
+List_arr	clear_list(List_arr li)
 {
 	if (!li)
 		return (li);
@@ -138,16 +206,68 @@ List	clear_list(List li)
 		li = pop_front_list(li);
 	return (li);
 }
+
+/*=============================================================================*/
+/*TURN STR EN BIT*/
+uint64_t	turn_to_bit(char *str)
+{
+	int	i;
+	int bit = 0;
+	int add = 1 << 15;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == BLOCK)
+			bit += add;
+		if (str[i] == 0)
+			add = 1;
+		if (str[i] == BLOCK || str[i] == EMPTY)
+			add /= 2;
+		i++;
+	}
+	return (bit);
+}
+
+/*=============================================================================*/
+/*Created a new element and put at the end of the list*/
+List_bits	push_back_list_bit(List_bits li, char *shape)
+{
+	t_bit_tetri	*element;
+	t_bit_tetri	*temp;
+	
+
+	element = malloc(sizeof(*element));
+	if (!element)
+	{
+		ft_putstr_fd("Error: problem with dynamic allocation memory\n", 2);
+		exit(EXIT_FAILURE);
+	}
+	element->bit = turn_to_bit(shape);
+	element->next = NULL;
+	if (!li)
+		return (element);
+	temp = li;
+	while (temp->next != NULL)
+		temp = temp->next;
+	temp->next = element;
+	return (li);
+}
+
  /*==========================================================================*/
 
 int	main(int argc, char **argv)
 {
-	List			tetriminos;
+	List_arr			tetriminos;
+	List_bits			bit_tetriminos;
 	char			pieces[MAX_SIZE + 1];
 	int				fd;
-	int				ret;
+	int		 		ret;
+	int				i;
 
-	tetriminos = newlist();
+	tetriminos = newlist_arr();
+	bit_tetriminos = newlist_bit();
+
 	if (argc != 2)
 		ft_putstr("Error// print usage message\n");
 	fd = open(argv[1], O_RDONLY);
@@ -157,7 +277,10 @@ int	main(int argc, char **argv)
 		{
 			pieces[ret] = '\0';
 			if (is_valid(pieces))
+			{
 				tetriminos = push_back_list(tetriminos, pieces);
+				bit_tetriminos = push_back_list_bit(bit_tetriminos, pieces);
+			}
 			else
 			{
 				ft_putstr_fd("Error: Not a valid tetriminos.\nEnd of the programm\n", 2);
@@ -167,4 +290,24 @@ int	main(int argc, char **argv)
 		}
 	close(fd);
 //	print_list(tetriminos);
+	while (bit_tetriminos != NULL)
+	{
+		i = 0;
+		while (i < 4)
+		{
+			printf("%s\n", tetriminos->tetriminos[i]);
+			i++;
+		}
+		i = 0;
+		printf("Coordonne of #: \n");
+		while (i < 4)
+		{
+			printf("line: %d\tcolumn: %d\n", tetriminos->coordonnee[i][0], tetriminos->coordonnee[i][1]);
+			i++;
+		}
+		printf("\nValue of tetriminos in bit: \n");
+		printbit(bit_tetriminos->bit);
+		bit_tetriminos = bit_tetriminos->next;
+		tetriminos = tetriminos->next;
+	}
 }

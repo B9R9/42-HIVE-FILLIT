@@ -6,7 +6,7 @@
 /*   By: briffard <briffard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 09:56:36 by briffard          #+#    #+#             */
-/*   Updated: 2022/01/24 11:18:12 by briffard         ###   ########.fr       */
+/*   Updated: 2022/01/26 14:16:30 by briffard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,12 +58,12 @@ t_bool	is_valid(char *tetriminos)
 		}
 		index++;
 	}
-	printf("%s=========================================%s\n", YELLOW, NORMAL);
+/*	printf("%s=========================================%s\n", YELLOW, NORMAL);
 	printf("%s", tetriminos);
 	printf("%sCOMMUN SIDE: %d%s\n",GREEN, countside, NORMAL);
 	printf("%sNUMBER OF #: %d%s\n",RED, counter, NORMAL);
 	printf("%sINDEX: %d%s\n", CYAN, index, NORMAL);
-	printf("%s=========================================%s\n", YELLOW, NORMAL);
+	printf("%s=========================================%s\n", YELLOW, NORMAL);*/
 	if (countside != 6 && countside != 8)
 		return (false);
 	/*last tetriminos index is equal to 20 when all the rest are equal to 21.
