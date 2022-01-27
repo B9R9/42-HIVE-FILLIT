@@ -5,95 +5,116 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: briffard <briffard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/18 16:31:48 by briffard          #+#    #+#             */
-/*   Updated: 2022/01/19 14:20:29 by briffard         ###   ########.fr       */
+/*   Created: 2022/01/20 13:57:42 by briffard          #+#    #+#             */
+/*   Updated: 2022/01/27 17:15:17 by briffard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
-
-/*CHECK FOR VALID PIECES
- * lookink for invalid character
- * wrong lenght line(\n position)
- * number of # (must to be 4)
- * check for \n a end of piece
- * every valid piece have 6 total sides touching
-*
-*/
-
-/*Check for NL position. Every 5 from 19 to 0*/
-int	check_nl(const char *str)
-{
-	int i = MAX_SIZE - 1;
-
-	while (i > 0)
-	{
-		if (str[i] != NEWLINE)
-			return (-1);
-		i -= 5;
-	}
-	if (str[MAX_SIZE] != NEWLINE || str[MAX_SIZE] != '\0')
-		return (-1);
-	return (0);
-}
-
-/*check for all possibility of tetriminos*/
-//int	tetricount(int tetricount)
-//{
-//	checker si le count ne depasse pas le nombre maximunde tetrimnos existant
-//}
-
-/*Reads tetriminos 1 by 1 from argv, adding to an array of struct or linked
- * list*/
-
-t_list *read_tetriminos(int fd)
-{
-	char	*tetriminos;
-	int		count;
-
-	count = 0;
-	tetriminos = ft_strnew(MAX_SIZE + 1);
-	while(read(fd, &teriminos, (MAX_SIZE + 1)))
-	{
-		if (check_nl(tetriminos) == -1 || tetricount(count) == -1)
-			return (NULL);
-		tetriminos[MAX_SIZE] = '\0';
-
-		add le tetriminos dans lst add.ou au tableau de de struct
-		ft_bzero(tetriminos, (MAX_SIZE + 1));
-		count++;
-	}
-	ft_strdel(tetriminos);
-	//si le tetricount == 0
-	//	on returne (NULL)
-	return ();
-}
-
+#include"fillit.h"
 
 int	main(int argc, char **argv)
 {
-	int						fd;
-	int						i;
-	struct s_tetriminos		arr_tetriminos[20];
+	List_arr			tetriminos;
+	List_bits			bit_tetriminos;
+	char				pieces[MAX_SIZE + 1];
+	int					fd;
+	int		 			ret;
+	int					i = 0;
 
-	i = 0;
+	tetriminos = newlist_arr();
+	bit_tetriminos = newlist_bit();
+
 	if (argc != 2)
-		ft_putstr("usage: ./fillit source_file");
-	else
-	{
-		fd = open(argv[1], O_RDONLY);
-		if (fd == -1)
-			return (-1);
-		while (i < 20)
+		ft_putstr("Error// print usage message\n");
+	fd = open(argv[1], O_RDONLY);
+	if (!fd)
+		ft_putstr("Error: open file.\n");
+	while((ret = read(fd, pieces, MAX_SIZE)))//NOT AT THE NORM
 		{
-			arr_tetriminos[i] = read_tetriminos(fd);
-			if (!arr_tetriminos[i])
-				close(fd);
-					if (close(fd) == -1)
-						return error
-				return (error);
+			pieces[ret] = '\0';
+			if (is_valid(pieces))
+			{
+				tetriminos = push_back_list(tetriminos, pieces);
+				bit_tetriminos = push_back_list_bit(bit_tetriminos, pieces);
+			}
+			else
+			{
+				ft_putstr_fd("Error: Not a valid tetriminos.\nEnd of the programm\n", 2);
+				clear_list(tetriminos);
+				break;
+			}
 		}
+	close(fd);
+	while (bit_tetriminos != NULL)
+	{
+		i = 0;
+		while (i < 4)
+		{
+			printf("%s\n", tetriminos->tetriminos[i]);
+			i++;
+		}
+		i = 0;
+		printf("Coordonne of #: \n");
+		while (i < 4)
+		{
+			printf("line: %d\tcolumn: %d\n", tetriminos->coordonnee[i][0], tetriminos->coordonnee[i][1]);
+			i++;
+		}
+		printf("Value of tetriminos in bit: \n");
+		printbit(bit_tetriminos->bit);
+		bit_tetriminos = bit_tetriminos->next;
+		tetriminos = tetriminos->next;
 	}
-	devra retouner le tetriminos_list ou arr;
-	return (0);
+/*	while(tetriminos != NULL)
+	{
+		i = 0;
+		printf("AVANT: Coordonne of #: \n");
+		while (i < 4)
+			{
+				printf("line: %d\tcolumn: %d\n", tetriminos->coordonnee[i][0], tetriminos->coordonnee[i][1]);
+				i++;
+			}
+		i = 0;
+		while (i < 4)
+		{
+			printf("%s\n", tetriminos->tetriminos[i]);
+			i++;
+		}*/
+//		tetriminos->coordonnee = align(tetriminos->coordonnee, check_coordonnee(tetriminos->coordonnee));
+/*		printf("%s============================================================%s\n",YELLOW, NORMAL);
+		i = 0;
+		k = 0;
+		while (i < 4)
+		{
+			j = 0;
+			while (j < 4)
+			{
+				if (k < 4)
+				{
+					if (tetriminos->coordonnee[k][0] == i && tetriminos->coordonnee[k][1] == j)
+					{
+						ft_putchar('#');
+					k++;
+					}
+					else
+						ft_putchar('.');
+				}
+				else
+					ft_putchar('.');
+				j++;
+			}
+			ft_putchar('\n');
+			i++;
+		}
+		printf("APRES: Coordonne of #: \n");
+		i = 0;
+		while (i < 4)
+			{
+				printf("line: %d\tcolumn: %d\n", tetriminos->coordonnee[i][0], tetriminos->coordonnee[i][1]);
+				i++;
+			}
+		printf("%s============================================================%s\n",YELLOW, NORMAL);
+		tetriminos = tetriminos->next;
+	}*/
+
 }

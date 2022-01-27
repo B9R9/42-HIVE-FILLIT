@@ -12,10 +12,12 @@ Changement d approche pour integre le bitwise
 -> recupere les coordonnes de chauqe # et les stocke dans un int ** -> done
 
 27/01:
--> aligner les pieces en haut a gauche
--> clean les fichiers
--> Mettre a jour git hub My vim config avec le fichier sur ton pc
+-> aligner les pieces en haut a gauche -> done
+-> mettre un tetriminos sur la map et print -> done
+-> reorganisaer leas fichier -> done
 
+28/01
+-> passer les fichiers a la norminette
+-> Mettre a jour git hub My vim config avec le fichier sur ton pc
 -> creer une map
--> mettre un tetriminos sur la map et print
 -> mettre 2 pieces de tetriminos et print
