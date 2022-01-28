@@ -6,7 +6,7 @@
 /*   By: briffard <briffard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 13:57:42 by briffard          #+#    #+#             */
-/*   Updated: 2022/01/27 17:15:17 by briffard         ###   ########.fr       */
+/*   Updated: 2022/01/28 17:36:39 by briffard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,10 @@ int	main(int argc, char **argv)
 	char				pieces[MAX_SIZE + 1];
 	int					fd;
 	int		 			ret;
-	int					i = 0;
-
+	char				**map;
+	size_t					i = 0;
+	
+	map = newmap(2);
 	tetriminos = newlist_arr();
 	bit_tetriminos = newlist_bit();
 
@@ -45,7 +47,16 @@ int	main(int argc, char **argv)
 			}
 		}
 	close(fd);
-	while (bit_tetriminos != NULL)
+	//print_list(tetriminos,"coordonnee");
+	printf("%sLongueur de map: %ld%s\n", GREEN, ft_strlen(map[0]),NORMAL);
+	i = 0;
+	while (i <= ft_strlen(map[0]))
+		printf("%s%s%s\n", BLUE, map[i++],NORMAL);
+	printmap(tetriminos, map);
+	
+
+}
+	/*while (bit_tetriminos != NULL)
 	{
 		i = 0;
 		while (i < 4)
@@ -65,7 +76,7 @@ int	main(int argc, char **argv)
 		bit_tetriminos = bit_tetriminos->next;
 		tetriminos = tetriminos->next;
 	}
-/*	while(tetriminos != NULL)
+	while(tetriminos != NULL)
 	{
 		i = 0;
 		printf("AVANT: Coordonne of #: \n");
@@ -116,5 +127,3 @@ int	main(int argc, char **argv)
 		printf("%s============================================================%s\n",YELLOW, NORMAL);
 		tetriminos = tetriminos->next;
 	}*/
-
-}

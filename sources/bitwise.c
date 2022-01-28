@@ -6,7 +6,7 @@
 /*   By: briffard <briffard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 13:57:42 by briffard          #+#    #+#             */
-/*   Updated: 2022/01/27 17:35:45 by briffard         ###   ########.fr       */
+/*   Updated: 2022/01/28 09:43:13 by briffard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,26 +18,6 @@ List_bits	newlist_bit(void)
 }
 
 /*============================================================================*/
-/*PRINT LIST*/
-void	print_list(List_arr li)
-{
-	int	i;
-
-	i = 0;
-	if (!li)
-	{
-		ft_putstr("Nothing to print, the list is empty.\n");
-		return;
-	}
-	while (li != NULL)
-	{
-		ft_putstr(li->tetriminos[i++]);
-		li = li->next;
-	}
-	ft_putchar('\n');
-}
-
-/*=============================================================================*/
 /*PRINT BITS*/
 void	printbit(uint64_t c)
 {

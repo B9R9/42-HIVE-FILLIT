@@ -6,7 +6,7 @@
 /*   By: briffard <briffard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 14:33:45 by briffard          #+#    #+#             */
-/*   Updated: 2022/01/27 17:31:49 by briffard         ###   ########.fr       */
+/*   Updated: 2022/01/28 16:12:11 by briffard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,11 @@ typedef enum
 /*READFILE.C*/
 List_arr	newlist_arr(void);
 List_arr	push_back_list(List_arr li, char *shape);
-void	print_list(List_arr li);
+void	print_list(List_arr li, char *str);
 List_arr	pop_front_list(List_arr li);
 List_arr	clear_list(List_arr li);
+char		**cpy_to_double_arr(char *str, char **arr);
+int			**save_coordonne(char **str, int **tab);
 
 /*IS_VALID.C*/
 t_bool	is_valid(char *tetriminos);
@@ -74,5 +76,10 @@ List_bits		push_back_list_bit(List_bits li, char *shape);
 void			printbit(uint64_t c);
 uint64_t		turn_to_bit(char *str);
 
+/*MAP.C*/
+char			**newmap(int i);
+
+/*PRINT_MAP.C*/
+int			printmap(List_arr li, char **map);
 
 #endif

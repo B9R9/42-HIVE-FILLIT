@@ -6,7 +6,7 @@
 /*   By: briffard <briffard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 13:57:42 by briffard          #+#    #+#             */
-/*   Updated: 2022/01/28 09:54:09 by briffard         ###   ########.fr       */
+/*   Updated: 2022/01/28 09:48:05 by briffard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,21 +163,11 @@ void	print_list(List_arr li, char *str)
 	while (li != NULL)
 	{
 		if (ft_strcmp(str, "tetri") == 0)
-		{
-			i = 0;
 			while (i < 4)
 				ft_putstr(li->tetriminos[i++]);
-		}
-		else if (ft_strcmp(str, "coordonnee") == 0)
-		{
-			i = 0;
+		else if (ft_strcmp(str, "coordonnee"))
 			while (i < 4)
-			{
 				printf("line: %d\tcolumn: %d\n",li->coordonnee[i][0], li->coordonnee[i][1]);
-				i++;
-			}
-			ft_putchar('\n');
-		}
 		li = li->next;
 	}
 	ft_putchar('\n');

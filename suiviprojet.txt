@@ -17,7 +17,14 @@ Changement d approche pour integre le bitwise
 -> reorganisaer leas fichier -> done
 
 28/01
+-> creer une map -> done
+-> mettre 2 pieces de tetriminos et print -> done
+
+next time:
 -> passer les fichiers a la norminette
 -> Mettre a jour git hub My vim config avec le fichier sur ton pc
--> creer une map
--> mettre 2 pieces de tetriminos et print
+-> reoarnaiser les fichier
+
+Avec une map de 6, les tetriminos se place au bonne endroit. a essayer avec
+plusieur nombre ainsi avec une map qui saggrandi quand il ya beosin
+
