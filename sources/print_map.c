@@ -6,7 +6,7 @@
 /*   By: briffard <briffard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 10:13:04 by briffard          #+#    #+#             */
-/*   Updated: 2022/01/28 17:35:35 by briffard         ###   ########.fr       */
+/*   Updated: 2022/01/31 12:27:01 by briffard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,11 @@
 /*CHECK IF THERE IS BLOCK AT THE COORDONNEE*/
 t_bool	check_block(int **tab, char **map)
 {
-	printf("CHECK BLOCK : in\n");
 	int	i;
 
 	i = 0;
 	while (i < 4)
 	{
-		printf("If %d = %c\n", map[tab[i][0]][tab[i][1]], BLOCK);
 		if (map[tab[i][0]][tab[i][1]] == BLOCK || map[tab[i][0]][tab[i][1]] == '\0')
 			return false;
 		i++;
@@ -32,13 +30,11 @@ t_bool	check_block(int **tab, char **map)
 /*CHECK IF A VALUE IS < ARR SIZE*/
 t_bool		checksize(int **tab, int size)
 {
-	printf("CHECK SIZE: in\n");
 	int	line;
 
 	line = 0;
 	while (line < 4)
 	{
-		printf("If %d > %d\n", tab[line][1], size);
 		if (tab[line][1] == size)
 			return(false);
 		line++;
@@ -50,7 +46,6 @@ t_bool		checksize(int **tab, int size)
 /*MOVE COORDONNEE */
 int		**move_coordonnee(int **tab, int arrsize)
 {
-	printf("MOVE : in\n");
 	int	line;
 	int	count;
 
@@ -65,10 +60,8 @@ int		**move_coordonnee(int **tab, int arrsize)
 	line = 0;
 	if (checksize(tab, arrsize) == 0)
 	{
-		printf("CHECKSIZE IN\n");
 		while (line < 4)
 		{
-			printf("Valeur de count: %d\n", count);
 			tab[line][0] += 1;
 			tab[line][1] -= (arrsize - 1);
 			line++;
@@ -81,16 +74,14 @@ int		**move_coordonnee(int **tab, int arrsize)
 /*CHECK IF WE ARE STILL INSIDE THE MAP*/
 t_bool		check_arr_limits(int **tab, int size)
 {
-	printf("ARR LIMITS: ENTRANCE\n");
 	int	line;
 
 	line = 0;
 	while (line < 4)
 	{
-		printf("ARR LIMITS: WHILE LOOP\n");
-		printf("If %d > %d\n", tab[line][0], size);
-		if (tab[line][0] == (size + 1))
-			return (false);
+		if (tab[line][1] == size)
+			if (tab[line + 1][0] == (size - 1) && tab[line + 1][1] == size)
+				return (false);
 		line++;
 	}
 	return(true);
@@ -111,39 +102,57 @@ void	displaymap(char **map, int	arrsize)
 /*PRINT A MAP WITH 1 TETRI BASE COORDONNEE IN LIST*/
 int		printmap(List_arr li, char **map)
 {
-	int			i;
-	int			j;
-	int			k;
-	t_arr_tetri		*temp;
-	int			arrsize;
+	int				i;
+	int				j;
+	int				k;
+	int				arrsize;
+	size_t			count;
 
+	printf("\nBEGINING PRINT MAP  ===================================\n");
 	arrsize = ft_strlen(map[0]);
-	printf("%sLenght of arrsize: %d%s\n", YELLOW, arrsize, NORMAL);
-	temp = li;
+	printf("%sValeur de arrsize = %d%s\n",YELLOW, arrsize, NORMAL);
+	printf("=======================================================\n");
+	printf("%sMAP : \n", BLUE);
+	count = 0;
+	while (count < ft_strlen(map[0]))
+		printf("%s\n", map[count++]);
+	printf("%s=======================================================\n", NORMAL);
+	printf("LES COORDONNEES:\n");
+	if (li)
+		{
+			i = 0;
+			while (i < 4)
+			{
+				printf("LINE: %d COLUMN: %d\n", li->coordonnee[i][0], li->coordonnee[i][1]);
+				i++;
+			}
+		}
+	printf("=======================================================\n");
 	if(!li)
 	{
 		i = 0;
-		while (i < arrsize)
+	printf("=======================================================\n");
+	printf("SOLUTION\n");
+	while (i < arrsize)
 			printf("%s%s%s\n",CYAN, map[i++], NORMAL);
 		return(0);
 	}
+	printf("=======================================================\n");
+	printf("Return of check_arr_limits = %d\n", check_arr_limits(li->coordonnee, arrsize));
+	printf("=======================================================\n");
 	if (check_arr_limits(li->coordonnee, arrsize) == 0)
 	{
-		printf("ARR_ LIMITS: IN\n");
 		i = 0;
 		while (i < arrsize)
 		{
 			ft_memdel((void **)&map[i]);
 			i++;
 		}
-		li = temp;
 		printmap(li, newmap(arrsize + 1));
 	}
 	if (check_block(li->coordonnee, map) == 0)
 		{
-			printf("CHECK BLOCK: IN\n");
 			li->coordonnee = move_coordonnee(li->coordonnee, arrsize);
-			print_list(li, "coordonnee");
 			printmap(li, map);
 		}
 	k = 0;
@@ -165,7 +174,6 @@ int		printmap(List_arr li, char **map)
 		map[i][j] = '\0';
 		i++;
 	}
-	displaymap(map, arrsize);
 	li = li->next;
 	printmap(li,map);
 	return(0);

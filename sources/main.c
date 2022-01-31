@@ -6,7 +6,7 @@
 /*   By: briffard <briffard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 13:57:42 by briffard          #+#    #+#             */
-/*   Updated: 2022/01/28 17:36:39 by briffard         ###   ########.fr       */
+/*   Updated: 2022/01/31 12:26:51 by briffard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	main(int argc, char **argv)
 	char				**map;
 	size_t					i = 0;
 	
-	map = newmap(2);
+	map = newmap(4);
 	tetriminos = newlist_arr();
 	bit_tetriminos = newlist_bit();
 
@@ -50,7 +50,8 @@ int	main(int argc, char **argv)
 	//print_list(tetriminos,"coordonnee");
 	printf("%sLongueur de map: %ld%s\n", GREEN, ft_strlen(map[0]),NORMAL);
 	i = 0;
-	while (i <= ft_strlen(map[0]))
+	printf("ORIGNAL MAP:\n");
+	while (i < ft_strlen(map[0]))
 		printf("%s%s%s\n", BLUE, map[i++],NORMAL);
 	printmap(tetriminos, map);
 	

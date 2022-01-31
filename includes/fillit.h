@@ -6,7 +6,7 @@
 /*   By: briffard <briffard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 14:33:45 by briffard          #+#    #+#             */
-/*   Updated: 2022/01/28 16:12:11 by briffard         ###   ########.fr       */
+/*   Updated: 2022/01/31 12:26:57 by briffard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ typedef struct	s_arr_tetri
 {
 	char 					**tetriminos;
 	int						**coordonnee;
+	//int						**temp;
 //	int						position_horizontal;
 //	int	 					position_verticale;
 	struct s_arr_tetri		*next;

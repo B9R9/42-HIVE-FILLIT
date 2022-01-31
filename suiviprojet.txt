@@ -21,7 +21,12 @@ Changement d approche pour integre le bitwise
 -> mettre 2 pieces de tetriminos et print -> done
 
 next time:
+-> Map la plus petite est toujours egal  = (pieces + 1 * 4) faire la racine
+carre
 -> passer les fichiers a la norminette
+-> ajouter une check sur le nombre de pieces
+-> Faire une cpy de li dans temp et on renvoye li si la map est trop petite
+-> faire en sorte de reccommercer a la derniere position de la pice ou elle c est place
 -> Mettre a jour git hub My vim config avec le fichier sur ton pc
 -> reoarnaiser les fichier
 
