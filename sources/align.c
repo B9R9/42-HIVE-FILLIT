@@ -6,11 +6,13 @@
 /*   By: briffard <briffard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 13:58:56 by briffard          #+#    #+#             */
-/*   Updated: 2022/01/27 17:07:04 by briffard         ###   ########.fr       */
+/*   Updated: 2022/02/01 16:16:19 by briffard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
+
+static int	smalest_column(int **arr);
 
 /*Check if the column of the block is closest to 0*/
 t_bool	check_coordonnee(int **coordonnee)

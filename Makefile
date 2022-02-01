@@ -6,7 +6,7 @@
 #    By: briffard <briffard@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/18 15:26:05 by briffard          #+#    #+#              #
-#    Updated: 2022/01/28 10:36:19 by briffard         ###   ########.fr        #
+#    Updated: 2022/02/01 16:23:07 by briffard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,12 +15,14 @@ NAME		=	 fillit
 SRC_DIR		=	./sources/
 OBJ_DIR		=	./objects/
 
-SRC			=	 main.c readfile.c is_valid.c align.c bitwise.c map.c print_map.c
+SRC			=	 main.c checkerrors.c readfile.c is_valid.c align.c		\
+				list.c allocation_memory.c check_solver.c solver.c		\
+				display.c
 OBJ			=	$(addprefix $(OBJ_DIR), $(SRC:.c=.o))
 
 INCL_FILLIT	=	./includes
-INCL_LIBFT	=	./libft/includes
-LIBFT		=	./libft/ -lft
+INCL_LIBFT	=	./sources/libft/includes
+LIBFT		=	./sources/libft/ -lft
 
 RM			=	rm
 
@@ -45,7 +47,7 @@ fclean: clean
 re: fclean all clean
 
 lft:
-	@make -C libft/ fclean && make -C libft/  && make -C libft/ clean 
+	@make -C ./sources/libft/ fclean && make -C ./sources/libft/  && make -C ./sources/libft/ clean 
 
 tetrigen:
 	@make -C eval_test/tetrigen/ fclean && make -C eval_test/tetrigen

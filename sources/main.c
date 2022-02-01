@@ -5,126 +5,36 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: briffard <briffard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/20 13:57:42 by briffard          #+#    #+#             */
-/*   Updated: 2022/01/31 12:26:51 by briffard         ###   ########.fr       */
+/*   Created: 2022/02/01 08:54:54 by briffard          #+#    #+#             */
+/*   Updated: 2022/02/01 19:30:28 by briffard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"fillit.h"
+#include "fillit.h"
 
 int	main(int argc, char **argv)
 {
-	List_arr			tetriminos;
-	List_bits			bit_tetriminos;
-	char				pieces[MAX_SIZE + 1];
-	int					fd;
-	int		 			ret;
-	char				**map;
-	size_t					i = 0;
-	
-	map = newmap(4);
-	tetriminos = newlist_arr();
-	bit_tetriminos = newlist_bit();
-
-	if (argc != 2)
-		ft_putstr("Error// print usage message\n");
-	fd = open(argv[1], O_RDONLY);
-	if (!fd)
-		ft_putstr("Error: open file.\n");
-	while((ret = read(fd, pieces, MAX_SIZE)))//NOT AT THE NORM
-		{
-			pieces[ret] = '\0';
-			if (is_valid(pieces))
-			{
-				tetriminos = push_back_list(tetriminos, pieces);
-				bit_tetriminos = push_back_list_bit(bit_tetriminos, pieces);
-			}
-			else
-			{
-				ft_putstr_fd("Error: Not a valid tetriminos.\nEnd of the programm\n", 2);
-				clear_list(tetriminos);
-				break;
-			}
-		}
-	close(fd);
-	//print_list(tetriminos,"coordonnee");
-	printf("%sLongueur de map: %ld%s\n", GREEN, ft_strlen(map[0]),NORMAL);
-	i = 0;
-	printf("ORIGNAL MAP:\n");
-	while (i < ft_strlen(map[0]))
-		printf("%s%s%s\n", BLUE, map[i++],NORMAL);
-	printmap(tetriminos, map);
-	
-
-}
-	/*while (bit_tetriminos != NULL)
+	int				fd;
+	tetri_list		pieces;
+//	char			**map;
+/*looking for errors with parameters*/
+	if (check_parameters(argc, argv[1]))
+		return (0);
+	else
 	{
-		i = 0;
-		while (i < 4)
-		{
-			printf("%s\n", tetriminos->tetriminos[i]);
-			i++;
-		}
-		i = 0;
-		printf("Coordonne of #: \n");
-		while (i < 4)
-		{
-			printf("line: %d\tcolumn: %d\n", tetriminos->coordonnee[i][0], tetriminos->coordonnee[i][1]);
-			i++;
-		}
-		printf("Value of tetriminos in bit: \n");
-		printbit(bit_tetriminos->bit);
-		bit_tetriminos = bit_tetriminos->next;
-		tetriminos = tetriminos->next;
+/*opening file who content tetriminos pieces*/
+		fd = open(argv[1], O_RDONLY);
+		if (check_fd(fd))
+			return (0);
+/*Creation of linked list who will conteint all information of the tetriminos
+ * pieces*/
+		pieces = create_tetri_list(fd);
+		print_all_list(pieces);
+//		if (check_return(pieces))
+//			return(0);
+		if (check_fd(close(fd)))
+			return (0);
+		solver(pieces, newmap(smallestmap(pieces)));
 	}
-	while(tetriminos != NULL)
-	{
-		i = 0;
-		printf("AVANT: Coordonne of #: \n");
-		while (i < 4)
-			{
-				printf("line: %d\tcolumn: %d\n", tetriminos->coordonnee[i][0], tetriminos->coordonnee[i][1]);
-				i++;
-			}
-		i = 0;
-		while (i < 4)
-		{
-			printf("%s\n", tetriminos->tetriminos[i]);
-			i++;
-		}*/
-//		tetriminos->coordonnee = align(tetriminos->coordonnee, check_coordonnee(tetriminos->coordonnee));
-/*		printf("%s============================================================%s\n",YELLOW, NORMAL);
-		i = 0;
-		k = 0;
-		while (i < 4)
-		{
-			j = 0;
-			while (j < 4)
-			{
-				if (k < 4)
-				{
-					if (tetriminos->coordonnee[k][0] == i && tetriminos->coordonnee[k][1] == j)
-					{
-						ft_putchar('#');
-					k++;
-					}
-					else
-						ft_putchar('.');
-				}
-				else
-					ft_putchar('.');
-				j++;
-			}
-			ft_putchar('\n');
-			i++;
-		}
-		printf("APRES: Coordonne of #: \n");
-		i = 0;
-		while (i < 4)
-			{
-				printf("line: %d\tcolumn: %d\n", tetriminos->coordonnee[i][0], tetriminos->coordonnee[i][1]);
-				i++;
-			}
-		printf("%s============================================================%s\n",YELLOW, NORMAL);
-		tetriminos = tetriminos->next;
-	}*/
+	return (0);
+}
