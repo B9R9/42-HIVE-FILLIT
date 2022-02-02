@@ -6,7 +6,7 @@
 /*   By: briffard <briffard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 08:54:54 by briffard          #+#    #+#             */
-/*   Updated: 2022/02/01 19:30:28 by briffard         ###   ########.fr       */
+/*   Updated: 2022/02/02 19:41:07 by briffard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,12 @@ int	main(int argc, char **argv)
 /*Creation of linked list who will conteint all information of the tetriminos
  * pieces*/
 		pieces = create_tetri_list(fd);
-		print_all_list(pieces);
+//		print_all_list(pieces);
 //		if (check_return(pieces))
 //			return(0);
 		if (check_fd(close(fd)))
 			return (0);
-		solver(pieces, newmap(smallestmap(pieces)));
+		solver(pieces, newmap(smallestmap(pieces)),pieces->coordonnee);
 	}
 	return (0);
 }

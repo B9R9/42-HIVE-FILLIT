@@ -6,13 +6,35 @@
 /*   By: briffard <briffard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 11:32:13 by briffard          #+#    #+#             */
-/*   Updated: 2022/02/01 18:52:32 by briffard         ###   ########.fr       */
+/*   Updated: 2022/02/02 11:16:43 by briffard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
 static char	**fillmap(char **str, char c, int size);
+
+
+/*Fill map with empty*/
+static char	**fillmap(char **str, char c, int size)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < size)
+	{
+		j = 0;
+		while (j < size)
+		{
+			str[i][j] = c;
+			j++;
+		}
+		str[i][j] = '\0';
+		i++;
+	}
+	return (str);
+}
 
 /*Allocate memory to coordonnee*/
 tetri_list	allocate_memory(tetri_list li)
@@ -37,27 +59,6 @@ tetri_list	allocate_memory(tetri_list li)
 		i++;
 	}
 	return (li);
-}
-
-/*Fill map with empty*/
-static char	**fillmap(char **str, char c, int size)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (i < size)
-	{
-		j = 0;
-		while (j < size)
-		{
-			str[i][j] = c;
-			j++;
-		}
-		str[i][j] = '\0';
-		i++;
-	}
-	return (str);
 }
 
 /*Create a new mapsize of i*/

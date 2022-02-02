@@ -34,6 +34,10 @@ next time:
 -> backtracking sur la mise en place des pieces mais comment faire quand la
 premiere tentative est faite. ils faut revenir en arrieres pour faire avancer la piece
 precedente. sinpirer du soduku
+-> arrive dans solver
+	-> creer un temp et lui atribuer li
+	-> envoyer temp->coordonne dans le solver et si cela vient hors faire
+utiliser position qui renvoie les ccordonnee de la derniere pieces 
 
 -> passer les fichiers a la norminette
 -> ajouter une check sur le nombre de pieces

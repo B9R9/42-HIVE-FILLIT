@@ -6,7 +6,7 @@
 #    By: briffard <briffard@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/18 15:26:05 by briffard          #+#    #+#              #
-#    Updated: 2022/02/01 16:23:07 by briffard         ###   ########.fr        #
+#    Updated: 2022/02/02 11:18:46 by briffard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ SRC_DIR		=	./sources/
 OBJ_DIR		=	./objects/
 
 SRC			=	 main.c checkerrors.c readfile.c is_valid.c align.c		\
-				list.c allocation_memory.c check_solver.c solver.c		\
+				list.c allocation_memory.c check_solver.c solver.version2.c		\
 				display.c
 OBJ			=	$(addprefix $(OBJ_DIR), $(SRC:.c=.o))
 

@@ -6,7 +6,7 @@
 /*   By: briffard <briffard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 11:23:27 by briffard          #+#    #+#             */
-/*   Updated: 2022/02/01 17:47:32 by briffard         ###   ########.fr       */
+/*   Updated: 2022/02/02 11:18:10 by briffard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,11 @@ static int	**save_coordonnee(char *str, int **tab)
 	i = 0;
 	while (str[i] != '\0')
 	{
-		if ((i % 5) == 4)
+		if (str[i] == '\n')
 		{
 			line++;
 			column = 0;
+			i++;
 		}
 		if (str[i] == BLOCK)
 		{	

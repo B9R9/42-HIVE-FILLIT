@@ -6,7 +6,7 @@
 /*   By: briffard <briffard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 15:08:43 by briffard          #+#    #+#             */
-/*   Updated: 2022/02/01 19:28:00 by briffard         ###   ########.fr       */
+/*   Updated: 2022/02/02 12:10:14 by briffard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ t_bool		block_checker(int **ar, char **map)
 	i = 0;
 	while (i < 4)
 	{
-		if (map[ar[i][0]][ar[i][1]] == 'A' || map[ar[i][0]][ar[i][1]] == '\0')
+		if (map[ar[i][0]][ar[i][1]] != EMPTY || map[ar[i][0]][ar[i][1]] == '\0')
 			return (true);
 		i++;
 	}

@@ -6,7 +6,7 @@
 /*   By: briffard <briffard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 14:33:45 by briffard          #+#    #+#             */
-/*   Updated: 2022/02/01 17:06:53 by briffard         ###   ########.fr       */
+/*   Updated: 2022/02/02 19:40:08 by briffard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@
 typedef struct	s_tetri
 {
 //	char 					**tetriminos;
+	char					letter;
 	int						**coordonnee;
 	struct s_tetri		*next;
 }				t_tetri,*tetri_list;
@@ -73,7 +74,7 @@ void		clearmap(char **map);
 /*display.c*/
 void		print_all_list(tetri_list li);
 void		printmap(char **map);
-char		**printcoordonnee(int **tab, char **map);
+char		**printcoordonnee(int **tab, char **map, char c);
 
 /*check_solver*/// 5/5 COMPLETE FILE
 int			smallestmap(tetri_list li);
@@ -90,7 +91,7 @@ t_bool		check_coordonnee(int **coordonnee);
 int			**align(int **coordonnee, int result);
 
 /*solver.c*/
-int			solver(tetri_list li, char **map);
+int			solver(tetri_list li, char **map, int **position);
 
 
 /*=======================================================================*/
