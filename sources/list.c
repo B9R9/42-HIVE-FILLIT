@@ -6,7 +6,7 @@
 /*   By: briffard <briffard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 11:23:27 by briffard          #+#    #+#             */
-/*   Updated: 2022/02/02 11:18:10 by briffard         ###   ########.fr       */
+/*   Updated: 2022/02/03 11:19:16 by briffard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ tetri_list	push_back_list(tetri_list li, char *tetriminos)
 			return(NULL);
 	element->coordonnee = save_coordonnee(tetriminos, element->coordonnee);
 	element->coordonnee = align(element->coordonnee,check_coordonnee(element->coordonnee));
+	element->temp = element->coordonnee;
 	element->next = NULL;
 	if (!li)
 		return (element);

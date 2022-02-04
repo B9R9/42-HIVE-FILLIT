@@ -6,7 +6,7 @@
 /*   By: briffard <briffard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 15:08:43 by briffard          #+#    #+#             */
-/*   Updated: 2022/02/02 12:10:14 by briffard         ###   ########.fr       */
+/*   Updated: 2022/02/04 11:59:42 by briffard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,18 +30,12 @@ static t_bool		checksize(int **tab, int size)
 }
 
 /*calculate the smallest map possible */
-int		smallestmap(tetri_list li)
+int		smallestmap(t_dlist li)
 {
 	int	totalblock;
 	int result;
-	int i;
-	
-	i = 0;
-	while (li != NULL)
-		{
-			totalblock++;
-			li = li->next;
-		}
+	int i = 0;	
+	totalblock = li->length;
 	result = totalblock * 4;
 	while (i < result)
 	{
@@ -60,8 +54,7 @@ t_bool		check_limitsmap(int **tab, int size)
 	line = 0;
 	while (line < 4)
 	{
-		if (tab[line][1] == size)
-			if (tab[line + 1][0] == (size - 1) && tab[line + 1][1] == size)
+		if(tab[line][0] == size)
 				return (true);
 		line++;
 	}
@@ -105,7 +98,7 @@ int		**move_coordonnee(int **tab, int mapsize)
 		while (line < 4)
 		{
 			tab[line][0] += 1;
-			tab[line][1] -= (mapsize - 1);// a Verifier
+			tab[line][1] -= mapsize;// a Verifier
 			line++;
 		}
 	}

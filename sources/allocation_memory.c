@@ -6,7 +6,7 @@
 /*   By: briffard <briffard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 11:32:13 by briffard          #+#    #+#             */
-/*   Updated: 2022/02/02 11:16:43 by briffard         ###   ########.fr       */
+/*   Updated: 2022/02/04 12:00:03 by briffard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static char	**fillmap(char **str, char c, int size)
 {
 	int	i;
 	int	j;
-
+	
 	i = 0;
 	while (i < size)
 	{
@@ -37,27 +37,29 @@ static char	**fillmap(char **str, char c, int size)
 }
 
 /*Allocate memory to coordonnee*/
-tetri_list	allocate_memory(tetri_list li)
+t_tetri	allocate_memory(t_tetri li)
 {
-	int	i;
+	/*int	i;
 
 	i = 0;
 	li = ft_memalloc(sizeof(*li));
 	if (!li)
 		return (NULL);
 	li->coordonnee = (int **)ft_memalloc((sizeof(int *) * 4) + 1);
-	if (!li->coordonnee)
-		return (NULL);
+	li->temp = (int **)ft_memalloc((sizeof(int *) * 4) + 1);
+	if (!li->coordonnee || !li->temp)
+		exit(EXIT_FAILURE);
 	while (i < 5)
 	{
 		li->coordonnee[i] = (int *)ft_memalloc((sizeof(int *) * 4) + 1);
-		if (!li->coordonnee[i])
+		li->temp[i] = (int *)ft_memalloc((sizeof(int *) * 4) + 1);
+		if (!li->coordonnee[i] || !li->temp[i])
 		{
 			ft_putendl_fd ("Error: allocation memory(2)", 2);
-			return (NULL);
+			exit(EXIT_FAILURE);
 		}
 		i++;
-	}
+	}*/
 	return (li);
 }
 
@@ -67,21 +69,22 @@ char	**newmap(int size)
 	int		i;
 	char	**map;
 	i = 0;
-	map = (char **)ft_memalloc((sizeof(char *) * size) + 1);
+	map = (char **)ft_memalloc((sizeof(char *) * size));
 	if (!map)
 	{
 		ft_putendl_fd("Error: allocation memory map", 2);
-		return (NULL);
+		exit(EXIT_FAILURE);
 	}
 	else
 	{
 		while (i < size)
 		{
-			map[i] = (char *)ft_memalloc((sizeof(char) * size) + 1);
+			map[i] = (char *)ft_memalloc((sizeof(char) * size));
 			if (!map[i])
 			{
 				ft_putendl_fd("Error: allocation memory map", 2);
-				return (NULL);
+				exit(EXIT_FAILURE);
+				
 			}
 			i++;
 		}

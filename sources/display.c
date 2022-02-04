@@ -6,30 +6,32 @@
 /*   By: briffard <briffard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 14:16:13 by briffard          #+#    #+#             */
-/*   Updated: 2022/02/02 11:59:18 by briffard         ###   ########.fr       */
+/*   Updated: 2022/02/04 10:19:55 by briffard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
 /*Print all the list*/
-void	print_all_list(tetri_list li)
+void	print_all_list(t_dlist li)
 {
 	int	i;
+	t_tetri	*temp;
 
+	temp = li->begin;
 	if (!li)
 		ft_putstr("Nothing to print. List is empty!\n");
-	while (li != NULL)
+	while (temp != NULL)
 	{
 		i = 0;
 		while (i < 4 )
 		{
-			printf("Line: %d Column: %d\n", li->coordonnee[i][0], li->coordonnee[i][1]);
+			printf("Line: %d Column: %d\n", temp->coordonnee[i][0], temp->coordonnee[i][1]);
 			i++;
 		}
-		printf("Letter: %c\n", li->letter);
+		printf("Letter: %c\n", temp->letter);
 		ft_putchar('\n');
-		li = li->next;
+		temp = temp->next;
 	}
 	ft_putchar('\n');
 }

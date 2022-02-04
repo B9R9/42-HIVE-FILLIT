@@ -6,7 +6,7 @@
 /*   By: briffard <briffard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 09:07:55 by briffard          #+#    #+#             */
-/*   Updated: 2022/02/01 17:24:05 by briffard         ###   ########.fr       */
+/*   Updated: 2022/02/04 11:52:11 by briffard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ t_bool	check_parameters(int number, char *str)
 		ft_putendl_fd("Too many arguments", 2);
 		return (true);
 	}
-	else if (number == 2 && ft_strcmp(str, "test.fillit") != 0)
+	else if (number == 2 && ft_strcmp(str, "test24") != 0)
 	{
 		ft_putendl_fd("Wrong file name", 2);
 		return (true);
@@ -46,9 +46,19 @@ t_bool	check_fd(int fd)
 }
 
 /*check allocation memory return*/
-t_bool	check_return(tetri_list li)
+t_bool	check_return(t_tetri *li)
 {
-	if (!li)
+	if (li == NULL)
+	{
+		ft_putendl_fd("Error: allocation memory(1)", 2);
+		return (true);
+	}
+	return (false);
+}
+/*check return of dlist*/
+t_bool check_return_dlist(t_dlist li)
+{
+	if (li == NULL)
 	{
 		ft_putendl_fd("Error: allocation memory(1)", 2);
 		return (true);

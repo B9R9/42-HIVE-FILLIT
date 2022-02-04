@@ -6,16 +6,16 @@
 /*   By: briffard <briffard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 09:45:56 by briffard          #+#    #+#             */
-/*   Updated: 2022/02/02 11:19:37 by briffard         ###   ########.fr       */
+/*   Updated: 2022/02/04 09:14:45 by briffard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
 /*readfile and store in a linked list*/
-tetri_list	create_tetri_list(int fd)
+t_dlist	create_dlist(int fd)
 {
-	tetri_list	li;
+	t_dlist		li;
 	int			ret;
 	char		pieces[MAX_SIZE + 1];
 
