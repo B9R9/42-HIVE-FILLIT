@@ -28,30 +28,14 @@ Changement d approche pour integre le bitwise
 -> ajouter l option qui commence avec la map la plus petite possible-> done
 -> Mettre a jour git hub My vim conyyfig avec le fichier sur ton pc-> done
 
-
+04/02:
+-> crrer un liste dpoublement chainee
+-> SOLVED !!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 next time:
--> backtracking sur la mise en place des pieces mais comment faire quand la
-premiere tentative est faite. ils faut revenir en arrieres pour faire avancer la piece
-precedente. sinpirer du soduku
--> arrive dans solver
-	-> creer un temp et lui atribuer li
-	-> envoyer temp->coordonne dans le solver et si cela vient hors faire
-utiliser position qui renvoie les ccordonnee de la derniere pieces 
--> peut etre de linker la list avec previous qui permettrai de bouger en avant
-et en arrire dans la list
 -> passer les fichiers a la norminette
 -> ajouter une check sur le nombre de pieces
--> Faire une cpy de li dans temp et on renvoye li si la map est trop petite->
-utiliation d un double arr en temps.
-penser a faire pointer temp sur le debut de  la liste pour pouvoir la renvoyer
-au besoin
-	arrive dans printmap
-		-> on copie les coordonnee de la pice dans temps
-		-> on travaille sur temps
--> faire en sorte de reccommercer a la derniere position de la pice ou elle c est place
--> l output chaque piece recoit une lettre de A a Z
+-> essaye d optiminer pour gagner du temps
+-> relecture total pour etre sur de rien avoir oublier
 
-Avec une map de 6, les tetriminos se place au bonne endroit. a essayer avec
-plusieur nombre ainsi avec une map qui saggrandi quand il ya beosin
 
