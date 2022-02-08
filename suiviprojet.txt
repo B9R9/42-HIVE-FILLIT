@@ -21,21 +21,22 @@ Changement d approche pour integre le bitwise
 -> mettre 2 pieces de tetriminos et print -> done
 
 31/01:
--> Mettre a jour git hub My vim conyyfig avec le fichier sur ton pc -> done
+-> Mettre a jour git hub My vim config avec le fichier sur ton pc -> done
 
 01/02
 -> Mise au propre des functions -> done
 -> ajouter l option qui commence avec la map la plus petite possible-> done
--> Mettre a jour git hub My vim conyyfig avec le fichier sur ton pc-> done
+-> Mettre a jour git hub My vim config avec le fichier sur ton pc-> done
 
 04/02:
--> crrer un liste dpoublement chainee
+-> creer un liste dpoublement chainee
 -> SOLVED !!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 next time:
 -> passer les fichiers a la norminette
+-> optimiser version coordonnee
+-> créer un makefile pour run les deux versions
 -> ajouter une check sur le nombre de pieces
--> essaye d optiminer pour gagner du temps
 -> relecture total pour etre sur de rien avoir oublier
 
 
